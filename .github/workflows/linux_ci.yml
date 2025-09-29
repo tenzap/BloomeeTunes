@@ -78,12 +78,6 @@ jobs:
           adjusted=$(( ${{ github.run_number }} + 121 ))
           echo "ADJUSTED_RUN_NUMBER=$adjusted" >> $GITHUB_ENV
           echo "FINAL_VERSION=${{ env.VERSION }}+${{ env.ADJUSTED_RUN_NUMBER }}" >> $GITHUB_ENV
-
-      - name: Zip Linux App
-        run: |
-          cd build/linux/x64/release/bundle
-          zip -r bloomee_tunes_linux_v${{ env.VERSION }}+${{ env.ADJUSTED_RUN_NUMBER }}.zip .
-
       - uses: jtdor/build-deb-action@v1
         env:
           DEB_BUILD_OPTIONS: noautodbgsym
