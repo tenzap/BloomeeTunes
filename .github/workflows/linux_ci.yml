@@ -1,7 +1,8 @@
 name: "Build for Linux"
 
 on:
-  branches: test
+  push:
+    branches: test
 
 jobs:
   linux_build:

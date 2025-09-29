@@ -2,7 +2,7 @@ name: "Build & Check"
 
 
 on:
-  push:
+  workflow_dispatch:
     paths-ignore:
       - 'README.md'
       - 'LICENSE'
@@ -13,7 +13,6 @@ on:
       - './github/FUNDING.yml'
       - './ghpage/**'
 
-  workflow_dispatch:
     branches: main
     
 jobs:
