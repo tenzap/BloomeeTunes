@@ -72,12 +72,10 @@ jobs:
         run: |
           ver=$(grep -m1 -E '^version:\s*' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
           if [ -z "$ver" ]; then echo "version not found in pubspec.yaml"; exit 1; fi
-          echo "VERSION=$ver" >> $GITHUB_ENV
           # compute adjusted build number so linux matches other platforms
           # add 121 to the GitHub run number so build numbers align with Android/Windows
           adjusted=$(( ${{ github.run_number }} + 121 ))
-          echo "ADJUSTED_RUN_NUMBER=$adjusted" >> $GITHUB_ENV
-          echo "FINAL_VERSION=${{ env.VERSION }}+${{ env.ADJUSTED_RUN_NUMBER }}" >> $GITHUB_ENV
+          echo "FINAL_VERSION=${ver}+${adjusted}" >> $GITHUB_ENV
       - uses: jtdor/build-deb-action@v1
         env:
           DEB_BUILD_OPTIONS: noautodbgsym
