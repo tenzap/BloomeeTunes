@@ -1,8 +1,7 @@
 name: "Build for Linux"
 
 on:
-  workflow_dispatch:
-    branches: main
+  branches: test
 
 jobs:
   linux_build:
